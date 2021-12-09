@@ -2,14 +2,22 @@
   "name": "inventory",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.7.2",
+    "jquery": "^3.6.0",
+    "popper": "^1.0.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.0.3",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "xmysql": "^0.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
