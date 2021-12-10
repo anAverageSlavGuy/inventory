@@ -17,6 +17,12 @@
   color: #61dafb;
 }
 
+nav {
+  position: sticky!important;
+  top: 0;
+  z-index: 100;
+}
+
 .content {
   padding: 1.5rem 1.5rem 0 1.5rem;
   margin-right: 0;
@@ -32,6 +38,19 @@
 
 .box-actions > i {
   cursor: pointer;
+}
+
+.invalid {
+  border-color: #dc3545!important;
+}
+
+.quantity-selector {
+  max-width: 100px;
+}
+
+.list-group-item > a {
+  text-decoration: none;
+  color: black;
 }
 
 @keyframes App-logo-spin {
