@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProductList from './components/ProductList';
+import Products from './components/Products';
 import Nav from './components/Nav';
-import BoxList from './components/BoxList';
+import Boxes from './components/Boxes';
 import Box from './components/Box';
+import SearchProduct from './components/SearchProduct';
 import './App.css';
 
 function App() {
@@ -11,9 +12,10 @@ function App() {
       <Router>
         <Nav />
         <Routes>
-          <Route exact path="/" element={<ProductList />} />
-          <Route path="/boxes" element={<BoxList />} />
-          <Route path="/products" element={<ProductList />} />
+          <Route exact path="/" element={<Products/>} />
+          <Route path="/boxes" element={<Boxes />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/search" element={<SearchProduct />} />
           <Route path="/boxes/:id" element={<Box />} />          
         </Routes>
       </Router>

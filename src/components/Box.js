@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, Link } from "react-router-dom";
-import ProductList from './ProductList';
+import ProductList from './Products';
 
 
 function Box() {

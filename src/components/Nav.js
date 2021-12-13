@@ -11,11 +11,14 @@ function Nav() {
                 <a className="navbar-brand" href="#">LOGO</a>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li to="/boxes" className="nav-item">
+                        <li className="nav-item">
                             <NavLink to="/boxes" activeClassName="active" className="nav-link" aria-current="page" href="#">Boxes</NavLink>
                         </li>
-                        <li to="/products" className="nav-item">
+                        <li className="nav-item">
                             <NavLink to="/products" activeClassName="active" className="nav-link" href="#">Products</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/search" activeClassName="active" className="nav-link" href="#">Search Product</NavLink>
                         </li>
                     </ul>
                 </div>

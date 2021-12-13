@@ -16,12 +16,12 @@
     "react-bootstrap": "^2.0.3",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.2",
     "xmysql": "^0.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "xmysql -h 0.0.0.0 -p eugenio1996 -d inventory -n 3001 & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
