@@ -21,7 +21,7 @@
     "xmysql": "^0.5.1"
   },
   "scripts": {
-    "start": "xmysql -h 0.0.0.0 -p eugenio1996 -d inventory -n 3001 & react-scripts start",
+    "start": "xmysql -h 0.0.0.0 -p mrs2019 -d inventory -n 3001 & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

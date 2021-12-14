@@ -1,47 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Requests from './Requests';
-import ProductList from './ProductList';
+import BoxList from './BoxList';
 
 function SearchProduct() {
     const [boxes, setBoxes] = useState([]);
     const [items, setItems] = useState([]);
+    const [box_product, setBoxProduct] = useState([]);
+
     const [filter, setFilter] = useState([]);
     const [searchItemName, setSearchNewItemName] = useState('');
 
     useEffect(() => {
-        fetchItems();
+        fetchAllItems();
     }, [])
 
-    const fetchItems = () => {
+    const fetchAllItems = () => {
         (async () => {
-            const boxes = await Axios.get(Requests.fetchBoxes);
-            const products = await Axios.get(Requests.fetchBoxProductJoin);
+            let boxes = await Axios.get(Requests.fetchBoxes);
+            let products = await Axios.get(Requests.fetchProducts);
+            let box_product = await Axios.get(Requests.fetchBoxProductJoin);
+
+            console.log(box_product.data);
+
+            fetchBoxes([], boxes.data);
             setBoxes(boxes.data);
             setItems(products.data);
+            setBoxProduct(box_product.data);
         })();
     }
 
-    const filterItemsByBox = (id) => {
-        setFilter(items.filter(product => product.b_id == id));
-    }
+    const fetchBoxes = (bp, b) => {
+        for (var i in b) {
+            let qty = bp.filter(item => item.b_id == b[i].id)
+            b[i].quantity = qty.reduce(function (sum, el) {
+                return sum + el.bp_quantity;
+            }, 0);
+        }
 
-    const deleteItem = (id) => {
-        (async () => {
-            let url = replacePlaceholders(Requests.deleteProduct, { "%ID%": id });
-            await Axios.delete(url);
-            //filterItemsByBox();
-        })();
+        setFilter(b.filter(item => item.quantity > 0));
     }
 
     const handleEmptyResult = () => {
-        if (items.length == 0) {
-            return <span className="text-light"> No products found.</span>
+        if (filter.length == 0) {
+            return <span className="text-light"> It's not found in any box.</span>
         }
     }
 
     const handleProductInput = (val) => {
         setSearchNewItemName(val);
+        console.log(box_product.filter(item => item.p_name == val));
+        fetchBoxes(box_product.filter(item => item.p_name == val), boxes);
     }
 
     return (
@@ -53,29 +62,20 @@ function SearchProduct() {
                     <datalist id="productList">
                         {
                             items.map((item) => {
-                                return <option key={item.bp_id} value={item.p_name}></option>
+                                return <option key={item.id} value={item.name}></option>
                             })
                         }
                     </datalist>
-                    <button className="btn btn-outline-secondary" type="button">Search</button>
                 </div>
             </div>
             <div className="mt-4 pb-4 bg-dark">
                 <div className="content">
-                    <ProductList items={filter} onDelete={deleteItem} onEmptyResult={handleEmptyResult}/>
+                    {handleEmptyResult()}
+                    <BoxList items={filter} canDelete={false} />
                 </div>
             </div>
         </div>
     )
-}
-
-function replacePlaceholders(string, array) {
-    //String must be like 'This is a string with %PLACEHOLDER%'
-    //Array must be like { "%NAME%": "Mike", "%AGE%": "22" }
-    let res = string.replace(/%\w+%/g, function (all) {
-        return array[all] || all;
-    });
-    return res;
 }
 
 export default SearchProduct

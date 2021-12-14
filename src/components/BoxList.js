@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function BoxList({items, onDelete}) {
+function BoxList({items, onDelete, canDelete}) {
     return (
         <>
             <ul className="list-group">
@@ -10,7 +10,7 @@ function BoxList({items, onDelete}) {
                             <Link to={`/boxes/${item.id}`}> {item.name} </Link>
                             <div className="box-actions">
                                 <span className="badge bg-dark rounded-pill">{item.quantity}</span>
-                                <i className="bi bi-trash text-danger" onClick={() => onDelete(item.id)}></i>
+                                { canDelete && <i className="bi bi-trash text-danger" onClick={() => onDelete(item.id)}></i> }
                             </div>
                         </li>
                     })
@@ -19,5 +19,10 @@ function BoxList({items, onDelete}) {
         </>
     )
 }
+
+BoxList.defaultProps = {
+    onDelete: () => { alert()},
+    canDelete: true
+  };
 
 export default BoxList;

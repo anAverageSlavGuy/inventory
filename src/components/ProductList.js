@@ -11,7 +11,7 @@ function ProductList({items, onDelete, onEmptyResult}) {
                             {item.p_name}
                             <div className="box-actions">
                                 <span className="badge bg-dark rounded-pill">{item.bp_quantity}</span>
-                                <i className="bi bi-trash text-danger" onClick={() => onDelete(item.p_id)}></i>
+                                <i className="bi bi-trash text-danger" onClick={() => onDelete(item.bp_id)}></i>
                             </div>
                         </li>
                     })
